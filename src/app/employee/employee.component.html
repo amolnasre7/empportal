@@ -1,0 +1,45 @@
+
+
+
+<input type="text" placeholder="search by name"[(ngModel)]="searchTerm" style="width : 590px">
+
+<app-employee-count [all]="getAllEmployeeCount()"
+                      [male]="getAllMaleEmployeeCount()"
+                     [female]="getAllFemaleEmployeeCount()"></app-employee-count>
+
+<br/>
+<br/>
+
+<table>
+    <thead>
+        <tr>
+        
+          <th colspan="5">Employee Details</th>
+          </tr>
+        </thead>
+<tbody>
+<tr>
+  <th>Id</th>
+  <th>Name</th>
+  <th>salary</th>
+  <th>gender</th>
+  <th>Dob</th>
+</tr>
+<tr *ngFor="let emp of employee | employeeSearch : searchTerm">
+  <td>{{emp.id}}</td>
+  <td>{{emp.name | empTitle : emp.gender}}</td>
+  <td>{{emp.salary | currency :"INR"}}</td>
+  <td>{{emp.gender}}</td>
+  <td>{{emp.dob}}</td>
+
+</tr>
+
+</tbody>
+</table>
+<br/>
+<br/>
+<app-employee-count (clildEvent)="message=$event"></app-employee-count>
+<h1>{{message}}</h1>
+
+<input type ="text" [(ngModel)]="firstName">
+<h2>first name : {{firstName}}</h2>
